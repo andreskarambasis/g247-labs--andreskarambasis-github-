@@ -1,0 +1,393 @@
+/* ============================================================
+   American Style — hoja de estilos compartida
+   Nombres: [Escribe aquí tu nombre / el de tu pareja]
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. VARIABLES DE COLOR
+   Se definen una sola vez en :root y se reutilizan con var().
+   Así, cambiar la paleta del sitio se hace en un único lugar.
+   ------------------------------------------------------------ */
+:root {
+  --rojo: #c4291f;
+  --rojo-oscuro: #961e16;
+  --mostaza: #e9a81c;
+  --carbon: #1c1a19;
+  --superficie: #f4f2ef;
+  --borde: #ded9d3;
+  --texto: #262220;
+}
+
+
+/* ------------------------------------------------------------
+   2. RESET
+   box-sizing: border-box hace que el padding y el borde se
+   cuenten DENTRO del ancho declarado. Sin esto, un elemento
+   con width:100% más padding se saldría de su contenedor.
+   ------------------------------------------------------------ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--texto);
+  background-color: #ffffff;
+}
+
+
+/* ------------------------------------------------------------
+   3. HEADER CON FLEXBOX
+   display:flex pone el título y el eslogan en una misma fila.
+   justify-content:space-between los separa a los dos extremos.
+   align-items:center los alinea verticalmente entre sí.
+   flex-wrap permite que bajen de línea si no caben.
+   ------------------------------------------------------------ */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background-color: var(--carbon);
+  color: #ffffff;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+header p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #c9c2bb;
+}
+
+
+/* ------------------------------------------------------------
+   4. NAVEGACIÓN CON FLEXBOX
+   El <ul> deja de ser una lista vertical con viñetas y pasa a
+   ser una fila. list-style:none quita los marcadores, gap
+   separa los enlaces sin necesidad de márgenes manuales.
+   Esta regla afecta al nav del header y al del footer.
+   ------------------------------------------------------------ */
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Barra de navegación principal (el nav que cuelga de body) */
+body > nav {
+  padding: 0.9rem 2rem;
+  background-color: var(--rojo);
+}
+
+body > nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+body > nav a:hover {
+  text-decoration: underline;
+}
+
+
+/* ------------------------------------------------------------
+   5. COMPOSICIÓN PRINCIPAL
+   main se centra y se limita en anchura para que las líneas de
+   texto no queden demasiado largas y sean legibles.
+   ------------------------------------------------------------ */
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+}
+
+
+/* ------------------------------------------------------------
+   6. GRID DE LA PÁGINA DE INICIO
+   La página principal tiene <aside>, así que su main usa Grid
+   de dos pistas: una ancha (2fr) para las secciones y otra
+   estrecha (1fr) para la barra lateral.
+   Las secciones se colocan en la columna 1 y el aside en la 2.
+   align-items:start evita que el aside se estire a lo alto.
+   ------------------------------------------------------------ */
+main.home {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+main.home > section {
+  grid-column: 1;
+  margin-bottom: 0;
+}
+
+main.home > aside {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+
+/* ------------------------------------------------------------
+   7. SECCIONES Y TÍTULOS
+   Un borde inferior bajo cada <h2> marca dónde empieza cada
+   bloque de contenido sin necesidad de más decoración.
+   ------------------------------------------------------------ */
+section {
+  margin-bottom: 2.5rem;
+}
+
+section h2 {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  font-size: 1.4rem;
+  border-bottom: 3px solid var(--rojo);
+}
+
+
+/* ------------------------------------------------------------
+   8. TARJETAS
+   Cada <article> se presenta como una tarjeta: fondo propio,
+   relleno interior, borde, esquinas redondeadas y separación
+   respecto a la siguiente.
+   ------------------------------------------------------------ */
+article {
+  background-color: var(--superficie);
+  padding: 1.5rem;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+article h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.15rem;
+  color: var(--rojo-oscuro);
+}
+
+article p:last-child,
+article ul:last-child,
+article ol:last-child {
+  margin-bottom: 0;
+}
+
+
+/* ------------------------------------------------------------
+   9. IMÁGENES
+   max-width:100% impide que una imagen más ancha que su
+   contenedor lo desborde; height:auto conserva la proporción
+   al reducirse.
+   ------------------------------------------------------------ */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+
+/* ------------------------------------------------------------
+   10. BARRA LATERAL
+   El borde izquierdo en mostaza la distingue del contenido
+   principal sin cambiar su tamaño ni su posición.
+   ------------------------------------------------------------ */
+aside {
+  background-color: var(--superficie);
+  border: 1px solid var(--borde);
+  border-left: 5px solid var(--mostaza);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+aside h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.15rem;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+
+/* ------------------------------------------------------------
+   11. LISTAS DE CONTENIDO
+   Estilo común para las <ul> y <ol> que aparecen dentro de
+   main, en todas las páginas del sitio.
+   ------------------------------------------------------------ */
+main ul,
+main ol {
+  padding-left: 1.4rem;
+  margin-top: 0;
+}
+
+main li {
+  margin-bottom: 0.45rem;
+}
+
+
+/* ------------------------------------------------------------
+   12. ENLACES DENTRO DEL CONTENIDO
+   ------------------------------------------------------------ */
+main a {
+  color: var(--rojo-oscuro);
+  font-weight: 600;
+}
+
+main a:hover {
+  color: var(--rojo);
+}
+
+
+/* ------------------------------------------------------------
+   13. FORMULARIO DE ACCESO
+   El formulario se presenta como una tarjeta centrada:
+   max-width lo limita en anchura y margin:0 auto lo centra
+   horizontalmente dentro de su sección.
+   ------------------------------------------------------------ */
+form {
+  max-width: 420px;
+  margin: 0 auto;
+  background-color: var(--superficie);
+  padding: 2rem;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+}
+
+form p {
+  margin: 0 0 1.25rem;
+}
+
+/* Cada etiqueta ocupa su propia línea, encima del campo */
+form label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+/* Campos a anchura completa de la tarjeta */
+form input {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #ffffff;
+}
+
+/* Foco visible: indica con claridad qué campo está activo,
+   también para quien navega con el teclado */
+form input:focus {
+  outline: 3px solid rgba(196, 41, 31, 0.3);
+  outline-offset: 1px;
+  border-color: var(--rojo);
+}
+
+form button {
+  width: 100%;
+  padding: 0.85rem;
+  background-color: var(--rojo);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: var(--rojo-oscuro);
+}
+
+
+/* ------------------------------------------------------------
+   14. FOOTER
+   Mismo fondo que el header para cerrar la página, separado
+   de main por un borde superior en rojo.
+   ------------------------------------------------------------ */
+footer {
+  padding: 2rem;
+  background-color: var(--carbon);
+  color: #c9c2bb;
+  text-align: center;
+  border-top: 4px solid var(--rojo);
+}
+
+footer p {
+  margin: 0 0 1rem;
+}
+
+footer nav ul {
+  justify-content: center;
+}
+
+footer a {
+  color: var(--mostaza);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* El icono SVG del enlace de acceso se alinea con el texto */
+footer svg {
+  vertical-align: middle;
+}
+
+
+/* ------------------------------------------------------------
+   15. BREAKPOINT RESPONSIVE
+   Por debajo de 768px la composición cambia de verdad:
+   el Grid de dos columnas pasa a una sola, el header apila
+   título y eslogan, y la navegación se convierte en columna.
+   ------------------------------------------------------------ */
+@media (max-width: 768px) {
+
+  main.home {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  main.home > section,
+  main.home > aside {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem;
+  }
+
+  body > nav ul {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  main {
+    padding: 1.5rem 1.25rem;
+  }
+
+}
